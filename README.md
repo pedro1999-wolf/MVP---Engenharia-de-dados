@@ -15,14 +15,17 @@ Os dados foram coletados na base de dados do Kaggle (https://www.kaggle.com/data
 
 Esse conjunto de dados foram armazenados na nuvem do Databricks Community. Segue um print abaixo como prova de que todas as operações foram feitas no Databricks:
 
-
+![Ambiente Databricks](https://github.com/pedro1999-wolf/MVP---Engenharia-de-dados/blob/main/Print_Ambiente_Databricks.png)
 
 ## Transformação dos dados
-- União dos dados: Os dados foram unidos em um único dataframe.
-- Explosão da coluna gênero: A coluna de gêneros foi explodida para fazer análises precisas de cada gênero.
-- Limpeza dos dados: Os dados foram analisados minuciosamente à procura de inconsistências e devidamente corrigidos. Detalharei mais abaixo em análise da qualidade dos dados.
-- Tranformação final dos dados: A tabela processada foi u
+- **União dos dados:** Os dados foram unidos em um único dataframe.
+- **Explosão da coluna gênero:** A coluna de gêneros foi explodida para fazer análises precisas de cada gênero.
+- **Limpeza dos dados** Os dados foram analisados minuciosamente à procura de inconsistências e devidamente corrigidos.Nesse processo também foram excluídos gêneros de filmes e séries muito específicos, que tornariam as análises extensas. Detalharei mais abaixo em análise da qualidade dos dados.
+- **Tranformação final dos dados:** Os dataframes foram processados para gerar um novo conjunto de dados baseado no ranking de filmes e séries por cada gênero nas plataformas baseadas nas notas do imdb. Foram tabém realizadas análises de ANOVA para testar se há diferença significativa na média das notas das plataformas em relação a plataforma que ficou em primeiro no ranking. Por exemplo, a média de nota do imdb de filmes de comédia da HBO é significativamente diferente da Hulu? 
+- **Criação da tabela dimensão das plataformas**: Foi criada em seguida a tabela de dimensão das plataformas, onde criei um id_plataforma, associei ao nome de uma plataforma e coloquei o preço da mensalidade sem anúncios (obtido por pesquisa na rede).
+- **Criação da tabela fato**: Por fim, foi criada a tabela fato a partir da tabela de ranking apenas substituindo a coluna com nome de plataformas por id_plataforma, tornando-a ligada à tabela dimensão da plataformas.
 
+  
 ## Modelagem dos dados
 Os dados foram modelados segundo um esquema de estrela, como mostra o diagrama abaixo:
 
@@ -47,5 +50,26 @@ Os dados foram modelados segundo um esquema de estrela, como mostra o diagrama a
 | id_plataforma            | bigint   | Identificador único da plataforma (chave primária)              | Ex: `1`, `2`, `3`, `4`, `5`           | Gerado com `monotonically_increasing_id()` no PySpark         |
 | plataforma               | string   | Nome da plataforma de streaming                                 | `Netflix`, `HBO`, `Prime Video`, ... | Adicionado manualmente durante ingestão dos CSVs              |
 | preco_mensal_sem_anuncios| float    | Valor mensal da assinatura sem anúncios (em R$)                 | Ex: `18.99`, `21.90`, `59.90`         | Coletado manualmente de fontes oficiais no site de cada plano |
+
+## Carga dos dados
+Os dataframes finais (df_final e dim_plataforma) foram carregados para o Delta Lake do Databricks como tabela_fato e dim_plataforma para a realização das consultas em SQL. Destaco abaixo o código utilizado para tal:
+
+- df_final.write.format("delta").mode("overwrite").saveAsTable("tabela_fato")
+- dim_plataforma.write.format("delta").mode("overwrite").saveAsTable("dim_plataforma")
+
+## Análises
+### Qualidade dos dados
+Os dados brutos vieram com algumas inconssitências que foram corrigidos durante o processamento:
+
+- 1. A coluna de gêneros veio com uma lista, acumulando vários gêneros em uma linha, o que dificultava análises. A explosão do gênero resolveu o problema.
+- 2. As colunas title e imdbAverageRating, essenciais para as posteriores tranformações, estavam com vários valores nulos. Todas as linhas dessas colunas com valores nulos foram excluídas.
+- 3. A coluna de gêneros veio com valores redundantes. Depois de excluir os gêneros que não seriam utilizados, eliminei as redundâncias dando um nome só: por exemplo, "sci fi" e "science fiction se tornaram apenas "sci fi".
+- 4. A coluna de tipos veio com um valor ""    Princess", que não faz sentido algum, e portanto foram eliminadas suas linhas.
+ 
+Fora essas inconsistências, o resto dos dados e colunas eliminados foram feitos arbitrariamente para tornar a tabela de análise mais limpa. Por exemplo, as colunas "releaseYear", "imdbId", "imdbNumVotes" e "availableCountries" foram eliminadas logo no início.
+
+### Solução do problema
+
+
 
 
