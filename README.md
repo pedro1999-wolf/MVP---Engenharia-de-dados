@@ -13,7 +13,9 @@ Os dados foram coletados na base de dados do Kaggle (https://www.kaggle.com/data
 - Apple TV = https://www.kaggle.com/datasets/octopusteam/full-apple-tv-dataset
 
 
-Esse conjunto de dados foram armazenados na nuvem do Databricks Community.
+Esse conjunto de dados foram armazenados na nuvem do Databricks Community. Segue um print abaixo como prova de que todas as operações foram feitas no Databricks:
+
+
 
 ## Transformação dos dados
 - União dos dados: Os dados foram unidos em um único dataframe.
