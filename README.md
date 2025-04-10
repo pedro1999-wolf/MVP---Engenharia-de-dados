@@ -78,10 +78,21 @@ Seguem abaixo todos os insights retirados das consultas para a solução do prob
 - **Gosto pessoal para séries de tv:**
 - 1. HBO seguiu sendo uma das melhores plataformas de streaming para todos os gêneros.
 - 2. Em comédia, todas as plataformas são equivalentes em qualidade, exceto prime video. Vale o cliente avaliar quanto quer gastar e os exclusivos oferecidos.
-- 3. 
+- 3. Em ação, a HBO é a melhor plataforma de séries. Game of thrones!
+- 4. Em drama, todas as plataformas são equivalentes, cabe ao cliente decidir.
+- 5. Em romance, a HBO e a Netlix são equivalentes em qualidade.
+- 6. Em horror todas as plataformas são equivalentes.
+- 7. Em suspense, a HBO e a Hulu são equivalentes.
+- 8. Em ficção científica, a Apple TV e a HBO são equivalentes.
+ 
+**Todas as tabelas de consulta podem ser vistas no notebook python do trabalho**
 
 ## Conclusão
-As consultas com SQL permitiram responder adequadamente qual plataforma tem o maior custo benefício baseado no gosto pessoal dos 7 gêneros abordados. Entretanto, outros fatores podem ser considerados para refinar ainda mais as análises. Por exemplo, muitas dessas plataformas produzem conteúdo exclusivo, o que poderia ser uma informação importante a ser levada em consideração na hora de decidir o quanto pagar por uma plataforma. Além disso, ela poderia ser feita com todos os gêneros mais específicos que foram excluídos no início, tornando os resultados ainda mais ricos em informação.
+As consultas com SQL permitiram responder adequadamente qual plataforma tem o maior custo benefício baseado no gosto pessoal dos 7 gêneros abordados. Entretanto, outros fatores podem ser considerados para refinar ainda mais as análises:
+
+- 1. Aumentar a amostragem de séries, pois há muito menos séries do que filmes nos dados.
+  2. Muitas dessas plataformas produzem conteúdo exclusivo, o que poderia ser uma informação importante a ser levada em consideração na hora de decidir o quanto pagar por uma plataforma.
+  3. Ela poderia ser feita com todos os gêneros mais específicos que foram excluídos no início, tornando os resultados ainda mais ricos em informação.
 
 ## Autoavaliação
 Comecei essa Sprint completamente desesperado com os conceitos apresentados. Comparado com as anteriores, ela é cheia de nomenclaturas e conceitos distintos que ainda me causam confusão. Sentia que eu não seria capaz de concluir esse trabalho de uma forma que eu sentisse satisfeito com o produto. Entretanto, com o passar do tempo e mais estudo, fui mergulhando na tarefa e consegui terminar o trabalho de forma satisfatória. Ainda sim, sinto que tenho que organizar melhor todo o conteúdo teórico apresentado nessa Sprint, pois com toda certeza meu notebook não está montado com o *flow* adequado de um pipeline de ETL. Saí do conteúdo teórico com dúvidas, e saio desse trabalho com ainda mais dúvidas, e é assim que um aluno se fortalece.
