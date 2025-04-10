@@ -15,7 +15,7 @@ Os dados foram coletados na base de dados do Kaggle (https://www.kaggle.com/data
 
 Esse conjunto de dados foram armazenados na nuvem do Databricks Community. Segue um print abaixo como prova de que todas as operações foram feitas no Databricks:
 
-![Ambiente Databricks](https://github.com/pedro1999-wolf/MVP---Engenharia-de-dados/blob/main/Print_Ambiente_Databricks.png)
+![Ambiente Databricks](https://github.com/pedro1999-wolf/MVP---Engenharia-de-dados/blob/main/Imagens/Print_Ambiente_Databricks.png)
 
 ## Transformação dos dados
 - **União dos dados:** Os dados foram unidos em um único dataframe.
@@ -29,7 +29,7 @@ Esse conjunto de dados foram armazenados na nuvem do Databricks Community. Segue
 ## Modelagem dos dados
 Os dados foram modelados segundo um esquema de estrela, como mostra o diagrama abaixo:
 
-![Esquema Estrela](https://github.com/pedro1999-wolf/MVP---Engenharia-de-dados/blob/main/Esquema%20estrela.png)
+![Esquema Estrela](https://github.com/pedro1999-wolf/MVP---Engenharia-de-dados/blob/main/Imagens/Esquema%20estrela.png)
 
 ## Catálogos dos dados
 
@@ -59,7 +59,7 @@ Os dataframes finais (df_final e dim_plataforma) foram carregados para o Delta L
 
 Seguem as imagens deles carregados:
 
-![Carga na nuvem](https://github.com/pedro1999-wolf/MVP---Engenharia-de-dados/blob/main/Carga%20na%20nuvem.png))
+![Carga na nuvem](https://github.com/pedro1999-wolf/MVP---Engenharia-de-dados/blob/main/Imagens/Carga%20na%20nuvem.png)
 
 ## Análises
 ### Qualidade dos dados
