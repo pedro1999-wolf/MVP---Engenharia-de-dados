@@ -57,6 +57,10 @@ Os dataframes finais (df_final e dim_plataforma) foram carregados para o Delta L
 - df_final.write.format("delta").mode("overwrite").saveAsTable("tabela_fato")
 - dim_plataforma.write.format("delta").mode("overwrite").saveAsTable("dim_plataforma")
 
+Seguem as imagens deles carregados:
+
+![Carga na nuvem](https://github.com/pedro1999-wolf/MVP---Engenharia-de-dados/blob/main/Carga%20na%20nuvem.png))
+
 ## Análises
 ### Qualidade dos dados
 Os dados brutos vieram com algumas inconssitências que foram corrigidos durante o processamento:
@@ -85,7 +89,7 @@ Seguem abaixo todos os insights retirados das consultas para a solução do prob
 - 7. Em suspense, a HBO e a Hulu são equivalentes.
 - 8. Em ficção científica, a Apple TV e a HBO são equivalentes.
  
-**Todas as tabelas de consulta podem ser vistas no notebook python do trabalho**
+**Todas as tabelas de consulta podem ser vistas no notebook python "MVP do trabalho**
 
 ## Conclusão
 As consultas com SQL permitiram responder adequadamente qual plataforma tem o maior custo benefício baseado no gosto pessoal dos 7 gêneros abordados. Entretanto, outros fatores podem ser considerados para refinar ainda mais as análises:
