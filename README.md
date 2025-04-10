@@ -1,5 +1,5 @@
 # MVP Engenharia de dados
-## Definição do problema: Qual o custo benefício 
+## Definição do problema: Qual o custo benefício de plataformas de streaming baseado no gosto pessoal por produtos audiovisuais?
 Em 2007, a netflix se tornou pioneira e dominante no mercado de streaming global. Hoje existem diversas plataformas de streaming que oferecem o mesmo serviço de diferentes maneiras. Uma das formas de diferenciação entre essas plataformas é o catálogo de filmes e séries que elas oferecem para o público. Consumidores diferenciam-se nas preferências de gênero de filmes e séries que consomem, o que pode influenciar na escolha de assinatura. Por exemplo, se uma pessoa assiste apenas filmes e séries de comédia, qual é a melhor plataforma para ela assinar? E se duas plataformas forem muito semelhantes oferecendo conteúdo de comédia, mas uma for muito mais barata que a outra?  
 ## Objetivo
 Considerando essa variação de gosto pessoal pelo consumo de conteúdo audiovisual e a variação de preço que existe entre plataformas, esse trabalho visa identificar quais plataformas oferecem os melhores serviços filmes e séries para determinada preferência. Serão analizados apenas os planos sem anúncios para fins de padronização das comparações.
@@ -69,7 +69,19 @@ Os dados brutos vieram com algumas inconssitências que foram corrigidos durante
 Fora essas inconsistências, o resto dos dados e colunas eliminados foram feitos arbitrariamente para tornar a tabela de análise mais limpa. Por exemplo, as colunas "releaseYear", "imdbId", "imdbNumVotes" e "availableCountries" foram eliminadas logo no início.
 
 ### Solução do problema
+Seguem abaixo todos os insights retirados das consultas para a solução do problema.
+- **Gosto pessoal para filmes**:
+- 1. A HBO liderou o pódio de melhor plataforma de filmes na maioria dos gêneros, com excessão de filmes de comédia.
+- 2. Para quem gosta de filmes de comédia, a plataforma Hulu é grande custo-benefício, pois seu catálogo possuí a mesma qualidade que o catálogo da HBO e é 37 reais mais barata.
+- 3. O Prime Video é a pior plataforma de filmes para todos os gêneros, apesar de sua versão sem anúncios ser mais cara que outras opções com catálogos melhores (ex. Apple e Hulu).
 
+- **Gosto pessoal para séries de tv:**
+- 1. HBO seguiu sendo uma das melhores plataformas de streaming para todos os gêneros.
+- 2. Em comédia, todas as plataformas são equivalentes em qualidade, exceto prime video. Vale o cliente avaliar quanto quer gastar e os exclusivos oferecidos.
+- 3. 
 
+## Conclusão
+As consultas com SQL permitiram responder adequadamente qual plataforma tem o maior custo benefício baseado no gosto pessoal dos 7 gêneros abordados. Entretanto, outros fatores podem ser considerados para refinar ainda mais as análises. Por exemplo, muitas dessas plataformas produzem conteúdo exclusivo, o que poderia ser uma informação importante a ser levada em consideração na hora de decidir o quanto pagar por uma plataforma. Além disso, ela poderia ser feita com todos os gêneros mais específicos que foram excluídos no início, tornando os resultados ainda mais ricos em informação.
 
-
+## Autoavaliação
+Comecei essa Sprint completamente desesperado com os conceitos apresentados. Comparado com as anteriores, ela é cheia de nomenclaturas e conceitos distintos que ainda me causam confusão. Sentia que eu não seria capaz de concluir esse trabalho de uma forma que eu sentisse satisfeito com o produto. Entretanto, com o passar do tempo e mais estudo, fui mergulhando na tarefa e consegui terminar o trabalho de forma satisfatória. Ainda sim, sinto que tenho que organizar melhor todo o conteúdo teórico apresentado nessa Sprint, pois com toda certeza meu notebook não está montado com o *flow* adequado de um pipeline de ETL. Saí do conteúdo teórico com dúvidas, e saio desse trabalho com ainda mais dúvidas, e é assim que um aluno se fortalece.
