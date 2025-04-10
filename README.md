@@ -24,8 +24,8 @@ Esse conjunto de dados foram armazenados na nuvem do Databricks Community.
 ## Modelagem dos dados
 Os dados foram modelados segundo um esquema de estrela, como mostra o diagrama abaixo:
 
-[![Esquema Estrela](Esquema estrela.png)
-](https://github.com/pedro1999-wolf/MVP---Engenharia-de-dados/blob/main/Esquema%20estrela.png)
+![Esquema Estrela](Esquema estrela.png)
+(https://github.com/pedro1999-wolf/MVP---Engenharia-de-dados/blob/main/Esquema%20estrela.png)
 
 ## Catálogos dos dados
 
