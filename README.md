@@ -16,22 +16,34 @@ Os dados foram coletados na base de dados do Kaggle (https://www.kaggle.com/data
 Esse conjunto de dados foram armazenados na nuvem do Databricks Community.
 
 ## Transformação dos dados
-- União dos dados: Os dados foram unidos em um único dataframe unindo todas as tabelas
-- Em seguida, a coluna de gêneros foi explodida para fazer análises precisas de cada gênero. 
+- União dos dados: Os dados foram unidos em um único dataframe.
+- Explosão da coluna gênero: A coluna de gêneros foi explodida para fazer análises precisas de cada gênero.
+- Limpeza dos dados: Os dados foram analisados minuciosamente à procura de inconsistências e devidamente corrigidos. Detalharei mais abaixo em análise da qualidade dos dados.
+- Tranformação final dos dados: A tabela processada foi u
+
+## Modelagem dos dados
+Os dados foram modelados segundo um esquema de estrela, como mostra o diagrama abaixo:
+
+![Esquema Estrela](Esquema estrela.png)
 
 ## Catálogos dos dados
 
 ### 1. Tabela Fato
-
 | Coluna                   | Tipo     | Descrição                                                                 | Domínio (Exemplos ou Faixas)               | Linhagem                                                                 |
 |--------------------------|----------|---------------------------------------------------------------------------|--------------------------------------------|--------------------------------------------------------------------------|
-| type                     | string   | Tipo de produção: filme ou série                                          | `movie`, `tv`                              | Extraído da coluna `type` original nos datasets das plataformas          |
-| genero                   | string   | Gênero principal da produção analisada                                   | `comedy`, `drama`, `romance`, `action`, ...| Explodido a partir da coluna `genres` de cada plataforma                 |
-| plataforma               | string   | Nome da plataforma de streaming                                           | `Netflix`, `HBO`, `Hulu`, `Apple TV`, ...   | Adicionada como coluna fixa durante a ingestão de cada CSV              |
-| media_imdb               | float    | Média das avaliações IMDb das obras naquele gênero e plataforma          | 0.0 a 10.0                                 | Média dos valores da coluna `imdbAverageRating`                         |
-| ranking                  | integer  | Posição relativa da plataforma dentro do gênero (1 = melhor média)       | 1 a 5 (depende da quantidade de plataformas)| Calculado por ranking decrescente da média IMDb por gênero              |
-| p_valor_vs_top1          | float    | Valor de p do teste ANOVA comparando com a melhor plataforma (rank 1)    | `null` ou valor entre 0.0 e 1.0            | Calculado via `scipy.stats.f_oneway()`                                  |
-| diferenca_significativa | boolean  | Indica se a diferença entre a plataforma e a top 1 é estatisticamente significativa (p < 0.05) | `true`, `false`            | Derivado do p-valor calculado (se < 0.05, então `true`)                  |
+| type                     | string   | Tipo de produção audiovisual                                              | `movie`, `tv`                              | Derivado da coluna `type` original dos CSVs por plataforma               |
+| genero                   | string   | Gênero principal da obra analisada                                        | `comedy`, `action`, `drama`, `romance`, ...| Extraído da coluna `genres` após explosão e limpeza                     |
+| media_imdb               | float    | Média das notas IMDb da plataforma para aquele gênero                     | de 0.0 a 10.0                               | Agregado a partir de `imdbAverageRating` por grupo                      |
+| ranking                  | integer  | Posição da plataforma em comparação às demais no mesmo gênero             | 1 a N (tipicamente 1 a 5)                   | Calculado por média IMDb decrescente                                    |
+| p_valor_vs_top1          | float    | p-valor do teste ANOVA comparando com a plataforma de ranking 1           | `null` ou valor entre 0.0 e 1.0             | Gerado com `scipy.stats.f_oneway()` entre Top1 e atual                  |
+| diferenca_significativa | boolean  | Se a diferença é estatisticamente significativa (p < 0.05)                | `true`, `false`                            | Derivado do `p_valor_vs_top1`                                           |
+| id_plataforma            | bigint   | ID da plataforma de streaming correspondente (FK para `dim_plataforma`)   | 1 a N                                      | Criado com `monotonically_increasing_id()` e referenciado por JOIN      |
 
+### 2. Dimensão plataforma
+| Coluna                   | Tipo     | Descrição                                                        | Domínio (Exemplos ou Faixas)         | Linhagem                                                      |
+|--------------------------|----------|------------------------------------------------------------------|--------------------------------------|---------------------------------------------------------------|
+| id_plataforma            | bigint   | Identificador único da plataforma (chave primária)              | Ex: `1`, `2`, `3`, `4`, `5`           | Gerado com `monotonically_increasing_id()` no PySpark         |
+| plataforma               | string   | Nome da plataforma de streaming                                 | `Netflix`, `HBO`, `Prime Video`, ... | Adicionado manualmente durante ingestão dos CSVs              |
+| preco_mensal_sem_anuncios| float    | Valor mensal da assinatura sem anúncios (em R$)                 | Ex: `18.99`, `21.90`, `59.90`         | Coletado manualmente de fontes oficiais no site de cada plano |
 
 
