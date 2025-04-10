@@ -89,7 +89,7 @@ Seguem abaixo todos os insights retirados das consultas para a solução do prob
 - 7. Em suspense, a HBO e a Hulu são equivalentes.
 - 8. Em ficção científica, a Apple TV e a HBO são equivalentes.
  
-**Todas as tabelas de consulta podem ser vistas no notebook python "MVP do trabalho**
+**Todas as tabelas de consulta podem ser vistas no notebook python "MVP engenharia de dados.ipynb" do trabalho**
 
 ## Conclusão
 As consultas com SQL permitiram responder adequadamente qual plataforma tem o maior custo benefício baseado no gosto pessoal dos 7 gêneros abordados. Entretanto, outros fatores podem ser considerados para refinar ainda mais as análises:
